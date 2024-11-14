@@ -60,7 +60,7 @@ const Cart = () => {
   ] = useUpdateCartitemMutation();
 
   const handleUpdateSize = (
-    e: React.ChangeEvent<HTMLOptionElement>,
+    e: React.ChangeEvent<HTMLOptionElement | HTMLSelectElement>,
     cartItemId: string,
     currentSize: string
   ) => {
@@ -83,7 +83,7 @@ const Cart = () => {
   ]);
 
   const handleUpdateQty = (
-    e: React.ChangeEvent<HTMLOptionElement>,
+    e: React.ChangeEvent<HTMLOptionElement | HTMLSelectElement>,
     cartItemId: string,
     currentQty: number
   ) => {

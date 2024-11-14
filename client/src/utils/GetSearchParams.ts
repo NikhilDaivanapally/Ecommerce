@@ -1,5 +1,5 @@
 const GetSearchParams = () => {
-  const params = {};
+  const params:any = {};
   const Urlparams = new URLSearchParams(window.location.search);
   Urlparams.forEach((value, key) => {
     if (key === "brands") {

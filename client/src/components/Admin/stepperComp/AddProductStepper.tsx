@@ -155,7 +155,7 @@ const Categorydetails: React.FC = () => {
 
 const Productdetails: React.FC = () => {
   const dispatch = useDispatch();
-  const { ProductInfo, ProductPreviewImageUrls } = useSelector(
+  const { ProductInfo, ProductPreviewImageUrls }: any = useSelector(
     (state: RootState) => state.admin.AddProduct
   );
   const handleProductdetails = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -249,9 +249,11 @@ const Productdetails: React.FC = () => {
   };
 
   const handleDeleteProduct = (deleteimg: string, index: number) => {
-    const ProductImagesArray = ProductInfo.images.filter((_, i) => i !== index);
+    const ProductImagesArray = ProductInfo.images.filter(
+      (_: any, i: number) => i !== index
+    );
     const ImagesArray = ProductPreviewImageUrls.filter(
-      (img) => img !== deleteimg
+      (img: string) => img !== deleteimg
     );
     dispatch(
       UpdateProductInfo({
@@ -279,7 +281,7 @@ const Productdetails: React.FC = () => {
             >
               {ProductPreviewImageUrls.length > 0 && (
                 <>
-                  {ProductPreviewImageUrls.map((url, index) => (
+                  {ProductPreviewImageUrls.map((url: string, index: number) => (
                     <div
                       key={index}
                       className="thumbnail_preview w-full h-full relative"
@@ -432,7 +434,7 @@ const Productdetails: React.FC = () => {
 };
 
 const AddProduct: React.FC = () => {
-  const { CategoryInfo, ProductInfo } = useSelector(
+  const { CategoryInfo, ProductInfo }: any = useSelector(
     (state: RootState) => state.admin.AddProduct
   );
   const { Category, subCategory, subsubCategory } = CategoryInfo;
@@ -474,7 +476,7 @@ const AddProduct: React.FC = () => {
               if (Array.isArray(ProductInfo[key])) {
                 return (
                   <>
-                    {ProductInfo[key].map((img, i) => (
+                    {ProductInfo[key].map((img) => (
                       <>
                         <img
                           className="w-full object-contain"
@@ -518,7 +520,7 @@ const AddProductStepper: React.FC = () => {
   const { subsubCategory } = CategoryInfo;
   const [currentStep, setCurrentStep] = useState(1);
   const [margins, setMargins] = useState({ marginLeft: 0, marginRight: 0 });
-  const stepRef = useRef< [] | HTMLDivElement[]>([]);
+  const stepRef = useRef<HTMLDivElement[]>([]);
   const calculateProgressbarwidth = () => {
     return ((currentStep - 1) / (stepConfig.length - 1)) * 100;
   };
@@ -563,7 +565,7 @@ const AddProductStepper: React.FC = () => {
     form.append("sizes", JSON.stringify(ProductInfo.sizes));
 
     // Append images
-    ProductInfo.images.forEach((image, index) => {
+    ProductInfo.images.forEach((image) => {
       form.append("images", image); // All images go under the key 'images'
     });
 
@@ -584,7 +586,11 @@ const AddProductStepper: React.FC = () => {
             <div
               key={index}
               className={`step flex flex-col items-center `}
-              ref={(el) => (stepRef.current[index] = el)}
+              ref={(el) => {
+                if (el) {
+                  stepRef.current[index] = el;
+                }
+              }}
             >
               <div
                 className={`step-number w-10 h-10 z-10 rounded-full   flex items-center justify-center ${

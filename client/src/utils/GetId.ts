@@ -11,7 +11,7 @@ interface CategoriesWiseSubCategories {
 }
 
 const getId = (categories: Category[], val: string, Gender: string) => {
-  const CategoriesWiseSubCategories: CategoriesWiseSubCategories = {
+  const CategoriesWiseSubCategories: CategoriesWiseSubCategories | any = {
     Mens: [],
     Kids: [],
     Womens: [],
@@ -24,7 +24,7 @@ const getId = (categories: Category[], val: string, Gender: string) => {
         getIds(el.subcategories, name);
       } else {
         if (CategoriesWiseSubCategories[name]) {
-          CategoriesWiseSubCategories[name].push({id:el.id,name:el.name});
+          CategoriesWiseSubCategories[name].push({ id: el.id, name: el.name });
         }
       }
     });
@@ -37,7 +37,7 @@ const getId = (categories: Category[], val: string, Gender: string) => {
 
   // Find the ID by matching the name (case-insensitive)
   const result = CategoriesWiseSubCategories[Gender].find(
-    (el) => el.name.toLowerCase() === val.toLowerCase()
+    (el: any) => el.name.toLowerCase() === val.toLowerCase()
   );
 
   return result?.id;

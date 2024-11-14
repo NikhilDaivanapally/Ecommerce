@@ -3,7 +3,7 @@ import { productsPerPage } from "../../constants";
 
 const Pagination: React.FC<{
   query: any;
-  setQuery: React.Dispatch<any> | undefined;
+  setQuery: React.Dispatch<any>;
   ProductsCount: any;
 }> = ({ query, setQuery, ProductsCount }) => {
   // select page handler

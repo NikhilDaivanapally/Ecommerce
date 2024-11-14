@@ -29,14 +29,28 @@ const ResetPassword = () => {
     },
   ] = useResetpassMutation();
 
-  const handleInputChnage = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChnage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setResetFormData({ ...resetFormData, [name]: value });
   };
 
   useEffect(() => {
     resetpassisSuccess && toast.success(resetpassdata.message);
-    resetpassisError && toast.error(resetpasserror?.message);
+
+    if (resetpassisError) {
+      if ("message" in resetpasserror) {
+        toast.error(resetpasserror.message || "");
+      } else if (
+        "data" in resetpasserror &&
+        typeof resetpasserror.data === "object" &&
+        resetpasserror.data !== null &&
+        "message" in resetpasserror.data
+      ) {
+        toast.error((resetpasserror.data as { message: string }).message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
+    }
   }, [resetpassisSuccess, resetpassisError]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

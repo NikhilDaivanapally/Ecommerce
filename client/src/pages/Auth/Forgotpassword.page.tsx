@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForgotpassMutation } from "../../store/slices/apiSlice";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loaders/Loader";
@@ -8,11 +8,27 @@ const Forgotpassword = () => {
   const [forgotpass, { isLoading, isError, isSuccess, error, data }] =
     useForgotpassMutation();
   useEffect(() => {
-    isSuccess && toast.success(data.message);
-    isError && toast.error(error?.message);
-  }, [isError, isSuccess]);
+    if (isSuccess && data?.message) {
+      toast.success(data.message);
+    }
 
-  const handlesubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    if (isError) {
+      if ("message" in error) {
+        toast.error(error.message || "");
+      } else if (
+        "data" in error &&
+        typeof error.data === "object" &&
+        error.data !== null &&
+        "message" in error.data
+      ) {
+        toast.error((error.data as { message: string }).message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
+    }
+  }, [isError, isSuccess, data, error]);
+
+  const handlesubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email) {
       await forgotpass({ email });

@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/Store";
-
 const Orders = [
   {
     Product: {
@@ -54,7 +51,5 @@ const NewCustomers = [
     email: "abc@gmail.com",
   },
 ];
-
-
 
 export { Orders, NewCustomers };

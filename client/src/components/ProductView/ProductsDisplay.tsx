@@ -70,7 +70,6 @@ const ProductsDisplay: React.FC<ProductDisplay> = ({
     addProductToWishlist,
     {
       isSuccess: AddProductToWishlistIsSuccess,
-      isLoading: AddProductToWishlistIsLoading,
       data: AddProductToWishlistData,
     },
   ] = useAddProductToWishlistMutation();
@@ -79,7 +78,6 @@ const ProductsDisplay: React.FC<ProductDisplay> = ({
     removeProductFromWishlist,
     {
       isSuccess: RemoveProductFromWishlistIsSuccess,
-      isLoading: RemoveProductFromWishlitIsLoading,
       data: RemoveProductFromWishlistData,
     },
   ] = useRemoveProductFromWishlistMutation();
