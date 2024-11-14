@@ -25,7 +25,7 @@ const SearchResult = () => {
   const [gridview, setGridview] = useState(4);
   const [ismobilefilter, setIsMobileFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isFilterLoading, setIsFilterLoading] = useState(false);
+  // const [isFilteroading, setIsFilterLoading] = useState(false);
   const searchParams = new URLSearchParams(search);
   const intitalquery: queryInterface = {
     page: Number(searchParams.get("page")) || 1,
@@ -90,14 +90,14 @@ const SearchResult = () => {
     setIsLoading(true);
   }, [pathname]);
 
-  useEffect(() => {
-    setIsFilterLoading(true);
-  }, [window.location.search]);
+  // useEffect(() => {
+  //   setIsFilterLoading(true);
+  // }, [window.location.search]);
 
   useEffect(() => {
     if (ProductsAndCountIsSuccess && BrandsAndPricesIsSuccess) {
       setIsLoading(false);
-      setIsFilterLoading(false);
+      // setIsFilterLoading(false);
     }
   }, [productsAndCount?.data, brandsAndPrices?.data]);
 
