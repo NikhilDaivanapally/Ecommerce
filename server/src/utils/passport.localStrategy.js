@@ -36,7 +36,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/api/v1/auth/google/callback",
+      callbackURL:
+        "https://ecommerce-5cc5.onrender.com/api/v1/auth/google/callback",
       scope: [
         "profile",
         "email",

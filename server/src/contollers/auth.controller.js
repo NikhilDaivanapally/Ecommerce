@@ -127,7 +127,7 @@ const forgotpassword = async (req, res) => {
   }
   try {
     const resetToken = await user.createPasswordResetToken();
-    const resetURL = `http://localhost:5173/account/reset-password?token=${resetToken}`;
+    const resetURL = `https://ecommerce-nikhil-daivanapallys-projects.vercel.app/account/reset-password?token=${resetToken}`;
     // send the resetURL to the email
     await sendMail({
       to: user.email,
@@ -196,18 +196,18 @@ const resetpassword = async (req, res, next) => {
 const googleLogin = (req, res, next) => {
   passport.authenticate("google", (err, user, info) => {
     if (err || !user) {
-      return res.redirect("http://localhost:5173/account/login?success=false");
+      return res.redirect("https://ecommerce-nikhil-daivanapallys-projects.vercel.app/account/login?success=false");
     }
 
     req.logIn(user, (err) => {
       if (err) {
         return res.redirect(
-          "http://localhost:5173/account/login?success=false"
+          "https://ecommerce-nikhil-daivanapallys-projects.vercel.app/account/login?success=false"
         );
       }
 
       // Redirect to your frontend with a success query param
-      return res.redirect("http://localhost:5173/account/login?success=true");
+      return res.redirect("https://ecommerce-nikhil-daivanapallys-projects.vercel.app/account/login?success=true");
     });
   })(req, res, next); // Call the passport function with req, res, and next
 };
