@@ -214,14 +214,14 @@ function App() {
         },
         {
           path: "edit/:id",
-          element: <EditProductPage/>,
+          element: <EditProductPage />,
         },
       ],
     },
   ]);
 
   return (
-    <div className="App select-none">
+    <div className="App select-none font-['gilroy']">
       <RouterProvider router={router} />
     </div>
   );
