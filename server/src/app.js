@@ -21,7 +21,10 @@ const WishlistItem = require("./models/wishlistItem.model");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://ecommerce-nikhil-daivanapallys-projects.vercel.app",
+    ],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
