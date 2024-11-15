@@ -3,6 +3,11 @@
   src: url("./assets/659DBDFD5A080BE8D348316E_PP%20NEUE%20MACHINA%20INKTRAP%20MEDIUM.TTF");
 }
 
+@font-face {
+  font-family: "gilroy";
+  src: url("./assets/Gilroy-Medium.ttf");
+}
+
 .App {
   font-family: "gilroy";
   width: 100%;
@@ -97,8 +102,7 @@ input[type="range"]::-webkit-slider-thumb:active {
   animation: animate81323 0.8s linear infinite;
 }
 
-@media(min-width:400px) {
-  
+@media (min-width: 400px) {
   *::-webkit-scrollbar {
     appearance: none;
     width: 10px;
